@@ -26,9 +26,9 @@ public class CourierCreateTest extends BaseApi {
     public void checkCreateCourier(){
         courierApi.setCourier(new Courier("ya", "1234", "saske"));
         courierApi.createCourier()
-                .then().assertThat().body("ok", is(true))
+                .then().statusCode(SC_CREATED)
                 .and()
-                .statusCode(SC_CREATED);
+                .assertThat().body("ok", is(true));
     }
 
 
@@ -39,9 +39,9 @@ public class CourierCreateTest extends BaseApi {
         courierApi.setCourier(new Courier("ya", "1234", "saske"));
         courierApi.createCourier();
         courierApi.createCourier()
-                .then().assertThat().body("message", equalTo("Этот логин уже используется. Попробуйте другой."))
+                .then().statusCode(SC_CONFLICT)
                 .and()
-                .statusCode(SC_CONFLICT);
+                .assertThat().body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
     }
 
 
@@ -51,9 +51,9 @@ public class CourierCreateTest extends BaseApi {
     public void checkCreateCourierWithoutPassName(){
         courierApi.setCourier(new Courier("ya", "", ""));
         courierApi.createCourier()
-                .then().assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"))
+                .then().statusCode(SC_BAD_REQUEST)
                 .and()
-                .statusCode(SC_BAD_REQUEST);
+                .assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
 
 
@@ -63,9 +63,9 @@ public class CourierCreateTest extends BaseApi {
     public void checkCreateCourierWithoutLoginName(){
         courierApi.setCourier(new Courier("", "1234", ""));
         courierApi.createCourier()
-                .then().assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"))
+                .then().statusCode(SC_BAD_REQUEST)
                 .and()
-                .statusCode(SC_BAD_REQUEST);
+                .assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
 
 
@@ -75,9 +75,9 @@ public class CourierCreateTest extends BaseApi {
     public void checkCreateCourierWithoutLoginPass(){
         courierApi.setCourier(new Courier("", "", "saske"));
         courierApi.createCourier()
-                .then().assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"))
+                .then().statusCode(SC_BAD_REQUEST)
                 .and()
-                .statusCode(SC_BAD_REQUEST);
+                .assertThat().body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
 
     @After

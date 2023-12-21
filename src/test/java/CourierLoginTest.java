@@ -27,9 +27,9 @@ public class CourierLoginTest extends BaseApi {
         courierApi.setCourier(new Courier("ya", "1234", "saske"));
         courierApi.createCourier();
         courierApi.loginCourier()
-                .then().assertThat().body("id", notNullValue())
+                .then().statusCode(SC_OK)
                 .and()
-                .statusCode(SC_OK);
+                .assertThat().body("id", notNullValue());
     }
 
 
@@ -39,9 +39,9 @@ public class CourierLoginTest extends BaseApi {
     public void checkLoginCourierWithoutPassword(){
         courierApi.setCourier(new Courier("ya", ""));
         courierApi.loginCourier()
-                .then().assertThat().body("message", equalTo("Недостаточно данных для входа"))
+                .then().statusCode(SC_BAD_REQUEST)
                 .and()
-                .statusCode(SC_BAD_REQUEST);
+                .assertThat().body("message", equalTo("Недостаточно данных для входа"));
     }
 
 
@@ -51,9 +51,9 @@ public class CourierLoginTest extends BaseApi {
     public void checkLoginCourierWithoutLogin(){
         courierApi.setCourier(new Courier("", "1234"));
         courierApi.loginCourier()
-                .then().assertThat().body("message", equalTo("Недостаточно данных для входа"))
+                .then().statusCode(SC_BAD_REQUEST)
                 .and()
-                .statusCode(SC_BAD_REQUEST);
+                .assertThat().body("message", equalTo("Недостаточно данных для входа"));
     }
 
 
@@ -63,9 +63,9 @@ public class CourierLoginTest extends BaseApi {
     public void checkLoginPasswordCourierIsIncorrect(){
         courierApi.setCourier(new Courier("null", "null"));
         courierApi.loginCourier()
-                .then().assertThat().body("message", equalTo("Учетная запись не найдена"))
+                .then().statusCode(SC_NOT_FOUND)
                 .and()
-                .statusCode(SC_NOT_FOUND);
+                .assertThat().body("message", equalTo("Учетная запись не найдена"));
     }
 
     @After

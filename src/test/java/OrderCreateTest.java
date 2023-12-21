@@ -44,8 +44,8 @@ public class OrderCreateTest extends BaseApi {
         OrderApi orderApi = new OrderApi(requestSpecification);
         orderApi.setOrder(order);
         orderApi.createOrder()
-                .then().assertThat().body("track", notNullValue())
+                .then().statusCode(SC_CREATED)
                 .and()
-                .statusCode(SC_CREATED);
+                .assertThat().body("track", notNullValue());
     }
 }

@@ -22,8 +22,8 @@ public class OrderListTest extends BaseApi {
     @Description("Успешное получение списка заказов")
     public void checkOrderList(){
         orderApi.getOrderList()
-                .then().assertThat().body("orders", notNullValue())
+                .then().statusCode(SC_OK)
                 .and()
-                .statusCode(SC_OK);
+                .assertThat().body("orders", notNullValue());
     }
 }
