@@ -1,5 +1,5 @@
-import api.BaseApi;
-import api.OrderApi;
+import api.BaseApiTest;
+import api.OrderApiTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
@@ -7,14 +7,14 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.apache.http.HttpStatus.*;
 
-public class OrderListTest extends BaseApi {
+public class OrderListTest extends BaseApiTest {
 
-    private OrderApi orderApi;
+    private OrderApiTest orderApi;
 
     @Before
     public void setUp() {
         super.setupRequestSpecification();
-        this.orderApi = new OrderApi(requestSpecification);
+        this.orderApi = new OrderApiTest(requestSpecification);
     }
 
     @Test

@@ -6,14 +6,14 @@ import io.restassured.specification.RequestSpecification;
 import org.example.Courier;
 import static org.apache.http.HttpStatus.*;
 
-public class CourierApi{
+public class CourierApiTest {
 
     private final static String COURIER_CREATE_ENDPOINT = "/courier";
     private final static String COURIER_LOGIN_ENDPOINT = "/courier/login";
     private Courier courier;
     private final RequestSpecification requestSpecification;
 
-    public CourierApi(RequestSpecification requestSpecification) {
+    public CourierApiTest(RequestSpecification requestSpecification) {
         this.requestSpecification = requestSpecification;
     }
 

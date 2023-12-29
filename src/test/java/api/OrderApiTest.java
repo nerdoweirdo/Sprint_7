@@ -5,13 +5,13 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.example.Order;
 
-public class OrderApi{
+public class OrderApiTest {
 
     protected final static String ORDERS_ENDPOINT = "/orders";
     private Order order;
     private final RequestSpecification requestSpecification;
 
-    public OrderApi(RequestSpecification requestSpecification) {
+    public OrderApiTest(RequestSpecification requestSpecification) {
         this.requestSpecification = requestSpecification;
     }
 

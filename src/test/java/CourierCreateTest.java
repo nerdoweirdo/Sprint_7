@@ -1,5 +1,5 @@
-import api.BaseApi;
-import api.CourierApi;
+import api.BaseApiTest;
+import api.CourierApiTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.example.Courier;
@@ -9,14 +9,14 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.apache.http.HttpStatus.*;
 
-public class CourierCreateTest extends BaseApi {
+public class CourierCreateTest extends BaseApiTest {
 
-    private CourierApi courierApi;
+    private CourierApiTest courierApi;
 
     @Before
     public void setUp() {
         super.setupRequestSpecification();
-        this.courierApi = new CourierApi(requestSpecification);
+        this.courierApi = new CourierApiTest(requestSpecification);
     }
 
 
